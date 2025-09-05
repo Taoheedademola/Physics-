@@ -1,0 +1,247 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Physics News Portal</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+      background: #111827;
+      border-bottom: 1px solid #1f2937;
+    }
+    header h1 {
+      color: #22d3ee;
+      margin: 0;
+      font-size: 28px;
+    }
+    main {
+      max-width: 800px;
+      width: 100%;
+      padding: 20px;
+    }
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+    }
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #a78bfa;
+      margin-bottom: 8px;
+    }
+    .date {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 12px;
+    }
+    .news-img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+    .desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #d1d5db;
+    }
+    a.readmore {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      background: #22d3ee;
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    a.readmore:hover {
+      background: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📰 Physics News & Research</h1>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2 class="title">Physics News (NASA)</h2>
+      <div id="newsBox" class="desc">
+        Loading latest space news...
+      </div>
+    </div>
+  </main>
+
+  <script>
+    async function loadNASA() {
+      try {
+        let res = await fetch(
+          "https://api.nasa.gov/planetary/apod?api_key=mx3BDAHqKOzOrSMVCl25tMQkSNYlNpVuBLUwSIsE"
+        );
+        let data = await res.json();
+        document.getElementById("newsBox").innerHTML = `
+          <div class="title">${data.title}</div>
+          <div class="date">${data.date}</div>
+          <img src="${data.url}" class="news-img" alt="NASA Image">
+          <p class="desc">${data.explanation.slice(0, 250)}...</p>
+          <a href="${data.hdurl}" target="_blank" class="readmore">Read More</a>
+        `;
+      } catch (err) {
+        document.getElementById("newsBox").innerText = "Failed to load NASA news.";
+      }
+    }
+    loadNASA();
+  </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Physics News Portal</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+      background: #111827;
+      border-bottom: 1px solid #1f2937;
+    }
+    header h1 {
+      color: #22d3ee;
+      margin: 0;
+      font-size: 28px;
+    }
+    main {
+      max-width: 800px;
+      width: 100%;
+      padding: 20px;
+    }
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+    }
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #a78bfa;
+      margin-bottom: 8px;
+    }
+    .date {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 12px;
+    }
+    .news-img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+    .desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #d1d5db;
+    }
+    a.readmore {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      background: #22d3ee;
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    a.readmore:hover {
+      background: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📰 Physics News & Research</h1>
+  </header>
+
+  <main id="newsContainer">
+    <div class="card">
+      <h2 class="title">Physics News (NASA)</h2>
+      <div class="desc">Loading latest space news...</div>
+    </div>
+  </main>
+
+  <script>
+    async function loadNASA() {
+      try {
+        let res = await fetch(
+          "https://api.nasa.gov/planetary/apod?api_key=mx3BDAHqKOzOrSMVCl25tMQkSNYlNpVuBLUwSIsE&count=5"
+        );
+        let data = await res.json();
+
+        let container = document.getElementById("newsContainer");
+        container.innerHTML = ""; // clear placeholder
+
+        data.forEach(item => {
+          if (item.media_type === "image") { // only show images
+            let card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+              <div class="title">${item.title}</div>
+              <div class="date">${item.date}</div>
+              <img src="${item.url}" class="news-img" alt="NASA Image">
+              <p class="desc">${item.explanation.slice(0, 200)}...</p>
+              <a href="${item.hdurl || item.url}" target="_blank" class="readmore">Read More</a>
+            `;
+            container.appendChild(card);
+          }
+        });
+      } catch (err) {
+        document.getElementById("newsContainer").innerHTML = "<p>Failed to load NASA news.</p>";
+      }
+    }
+    loadNASA();
+  </script>
+</body>
+</html>

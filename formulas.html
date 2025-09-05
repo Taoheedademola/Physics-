@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Physics Formula Calculator</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#0f172a; color:#e5e7eb; padding:20px; }
+    h1 { color:#22d3ee; }
+    .section { margin-bottom:30px; padding:15px; border:1px solid #334155; border-radius:8px; background:#111827; }
+    input { padding:5px; margin:5px; border-radius:5px; border:1px solid #334155; background:#0f172a; color:#e5e7eb; }
+    button { padding:6px 12px; border-radius:5px; background:#22d3ee; color:#0f172a; border:none; cursor:pointer; }
+    button:hover { background:#a78bfa; }
+    .result { margin-top:10px; font-weight:bold; color:#34d399; }
+    .formula { font-size:14px; color:#94a3b8; }
+  </style>
+</head>
+<body>
+  <h1>📐 Physics Formula Calculator</h1>
+
+  <!-- Mechanics -->
+  <div class="section">
+    <h2>Mechanics</h2>
+    <p class="formula">Kinetic Energy: <b>KE = ½mv²</b></p>
+    <input type="number" id="m" placeholder="Mass (kg)">
+    <input type="number" id="v" placeholder="Velocity (m/s)">
+    <button onclick="calcKE()">Calculate</button>
+    <div id="resKE" class="result"></div>
+
+    <p class="formula">Projectile Range: <b>R = (v² * sin(2θ)) / g</b></p>
+    <input type="number" id="v0" placeholder="Velocity (m/s)">
+    <input type="number" id="theta" placeholder="Angle (deg)">
+    <button onclick="calcProjectile()">Calculate</button>
+    <div id="resProjectile" class="result"></div>
+  </div>
+
+  <!-- Optics -->
+  <div class="section">
+    <h2>Optics</h2>
+    <p class="formula">Lens Equation: <b>1/f = 1/v + 1/u</b></p>
+    <input type="number" id="u" placeholder="Object distance (u)">
+    <input type="number" id="v_lens" placeholder="Image distance (v)">
+    <button onclick="calcLens()">Calculate</button>
+    <div id="resLens" class="result"></div>
+  </div>
+
+  <!-- Electricity -->
+  <div class="section">
+    <h2>Electricity</h2>
+    <p class="formula">Ohm’s Law: <b>V = IR</b></p>
+    <input type="number" id="I" placeholder="Current (A)">
+    <input type="number" id="R" placeholder="Resistance (Ω)">
+    <button onclick="calcOhm()">Calculate</button>
+    <div id="resOhm" class="result"></div>
+  </div>
+
+  <!-- Thermodynamics -->
+  <div class="section">
+    <h2>Thermodynamics</h2>
+    <p class="formula">Ideal Gas Law: <b>PV = nRT</b></p>
+    <input type="number" id="n" placeholder="Moles (n)">
+    <input type="number" id="T" placeholder="Temperature (K)">
+    <button onclick="calcGas()">Calculate</button>
+    <div id="resGas" class="result"></div>
+  </div>
+
+  <script>
+    function calcKE() {
+      let m = parseFloat(document.getElementById('m').value);
+      let v = parseFloat(document.getElementById('v').value);
+      let ke = 0.5 * m * v * v;
+      document.getElementById('resKE').innerText = "KE = " + ke.toFixed(2) + " J";
+    }
+    function calcProjectile() {
+      let v0 = parseFloat(document.getElementById('v0').value);
+      let theta = parseFloat(document.getElementById('theta').value) * Math.PI / 180;
+      let g = 9.8;
+      let R = (v0*v0*Math.sin(2*theta))/g;
+      document.getElementById('resProjectile').innerText = "Range = " + R.toFixed(2) + " m";
+    }
+    function calcLens() {
+      let u = parseFloat(document.getElementById('u').value);
+      let v = parseFloat(document.getElementById('v_lens').value);
+      let f = 1 / ((1/u)+(1/v));
+      document.getElementById('resLens').innerText = "Focal length f = " + f.toFixed(2);
+    }
+    function calcOhm() {
+      let I = parseFloat(document.getElementById('I').value);
+      let R = parseFloat(document.getElementById('R').value);
+      let V = I*R;
+      document.getElementById('resOhm').innerText = "Voltage V = " + V.toFixed(2) + " V";
+    }
+    function calcGas() {
+      let n = parseFloat(document.getElementById('n').value);
+      let T = parseFloat(document.getElementById('T').value);
+      let R = 8.314; // J/mol·K
+      let P = (n*R*T)/1; // assume V=1 m³
+      document.getElementById('resGas').innerText = "Pressure P = " + P.toFixed(2) + " Pa";
+    }
+  </script>
+</body>
+</html>
